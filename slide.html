@@ -1,0 +1,288 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>迪英加智能病理分析系统</title>
+	  <link rel="stylesheet" type="text/css" href="{% static "slide/css/slide_style.css"%}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "DeepInformaticsAI/css/font-awesome.css"%}">
+
+    <style type="text/css">
+        html {
+            display:block;
+            position:absolute;
+            left:0px;
+            top:0px;
+            width: 100%;
+            height:1000px;
+            background-size:cover;
+        }
+
+        body {
+            display:block;
+            position:absolute;
+            left:0px;
+            top:0px;
+            width: 100%;
+            height:100%;
+            background-size:cover;
+        }
+
+        .button-manage{
+            position: absolute;
+            left: 120px;
+            top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    {% csrf_token %}
+    <div id="menuButton">
+    	<img class="button" id="openMenu" title="展开" src="{% static "slide/slide_img/openMenu.svg"%}" />
+    </div>
+
+    <div class="boxes">
+        <div id="mainMenuDiv">
+            <img class="button" id="mainMenu" title="主菜单" src="{% static "slide/slide_img/main_icon.svg"%}" />
+
+            <a class="button-logout" href="{% url 'usermanage:logout' %}" title="登出"><i class="fa fa-sign-out fa-3x" aria-hidden="true" style="top: 5px; left: 50px"></i></a>
+
+            {% if user.is_staff %}
+                <a class="button-manage" href="{% url 'usermanage:admin' %}" title="用户管理界面"><button>用户管理界面</button></a>
+            {% endif %}
+
+        </div>
+<!--主页使用说明-->
+        <div class="introduction">
+            <div class="content">
+                <h1>迪英加 深度智能病理系统 使用说明</h1>
+                <hr>
+
+                <div class="file-system list-show">
+                    <h2>阅片选择 页面</h2>
+                    <ul>
+                        <li>
+                            <i class="folder fa fa-picture-o fa-1x" aria-hidden="false"></i>&nbsp&nbsp<span>单击切片文件进入 切片浏览 页面</span>
+                        </li>
+
+                        <li>
+                            <i class="fa fa-mouse-pointer fa-1x" aria-hidden="true"></i>
+                            <i class="folder fa fa-folder-open fa-1x" aria-hidden="false"></i>
+                            &nbsp&nbsp<span>单击文件夹名，可显示目录下所有切片文件及子文件夹</span>
+                        </li>
+
+                        <li>
+                            <i class="fa fa-mouse-pointer fa-1x" aria-hidden="true"></i>
+                            <i class="fa fa-mouse-pointer fa-1x" aria-hidden="true"></i>
+                            <i class="folder fa fa-folder-open fa-1x" aria-hidden="false"></i>&nbsp&nbsp<span>双击文件夹名，可浏览文件夹下所有切片文件</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="slides-viewing list-show">
+                    <h2>切片浏览 页面</h2>
+                    <ul>
+                        <li>
+                            <img src="/static/slide/slide_img/main_icon.svg" class="icon-menu" height="27px" width="27px">&nbsp<span> 单击 ， 退出当前切片浏览页面，进入 阅片选择 页面</span>
+                        </li>
+
+                        <li>
+                        <img src="/static/slide/slide_img/home.svg" class="icon-menu" height="27px" width="27px">
+                            <span>单击 ， 进入切片宏观显示模式</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/navigate.svg" class="icon-menu" height="27px" width="27px">
+                            <span>单击, 移动鼠标显示感兴趣区域</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/plus.svg" class="icon-menu" height="27px" width="27px">
+                            <span>单击, 放大当前视图</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/minus.svg" class="icon-menu" height="27px" width="27px">
+                            <span>单击， 缩小当前视图</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/select.svg" class="icon-menu" height="27px" width="27px">
+                            <span>单击， 选择标记区域</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/draw.svg" class="icon-menu" height="27px" width="27px">
+                            <span>单击, 新建标记区域,（在浏览页面单击鼠标，拖动鼠标绘制区域）</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/delete.svg" class="icon-menu" height="27px" width="27px">
+                            <span>选中区域，单击删除区域</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="region-marking list-show">
+                    <h2>标记区域</h2>
+                    <ul>
+                        <li>
+                            <img src="/static/slide/slide_img/save.svg" class="icon-menu" height="27px" width="27px"><span>单击，保存区域信息</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/prev.svg" class="icon-menu" height="27px" width="27px"><span>单击，切换至前一张切片（循环模式）</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/next.svg" class="icon-menu" height="27px" width="27px"><span>单击，切换至后一张切片（循环模式）</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/closeMenu.svg" class="icon-menu" height="27px" width="27px"><span>单击，收起操作面板</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/openMenu.svg" class="icon-menu" height="27px" width="27px"><span>单击，打开操作面板</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/eyeOpened.svg" class="icon-menu" height="27px" width="27px"><span> 在“文件描述”下方的输入框，可输入切片整体描述</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/startrecord.png" class="icon-menu" height="27px" width="27px"><span>单击，可对选中区域进行录音</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/stoprecord.png" class="icon-menu" height="27px" width="27px"><span>单击，可结束当前录音</span>
+                        </li>
+
+                        <li>
+                            <img src="/static/slide/slide_img/audio_player.png" class="icon-menu" height="27px" width="100"><span>单击， 可播放当前区域录音</span>
+                        </li>
+
+                        <li>
+                            <span>点击区域，可在区域下方的输入框输入对当前区域的描述</span>
+                        </li>
+                    </ul>
+                </div>
+<!--
+                <dir class="attention list-show">
+                    <span style="font-size: 40px;">注意</span><span>若想返回文件选择菜单，请勿点击浏览器后退键，请使用主菜单按钮</span>
+                </dir>
+ -->
+            </div>
+        </div>
+    </div>
+
+    <div id="menuPanel">
+        <div id="menuToolbar">
+            <div id="mainMenuButtonSpacer"></div>
+            <div class="separator"></div>
+            <img class="button tool" id="home"          title="主菜单"                 src="{% static "slide/slide_img/home.svg"%}" />
+            <img class="button tool" id="navigator"     title="浏览"                   src="{% static "slide/slide_img/navigate.svg"%}" />
+            <img class="button tool" id="zoom-in"       title="放大视图"                src="{% static "slide/slide_img/plus.svg"%}" />
+            <img class="button tool" id="zoom-out"      title="缩小视图"                src="{% static "slide/slide_img/minus.svg"%}" />
+            <div class="separator"></div>
+            <img class="button tool" id="draw"          title="绘制轮廓"                src="{% static "slide/slide_img/draw.svg"%}" />
+<!--             <img class="button tool" id="draw-polygon"  title="绘制多边形区域"           src="{% static "slide/slide_img/draw-polygon.svg"%}" /> -->
+            <img class="button tool" id="select"        title="选择区域"                src="{% static "slide/slide_img/select.svg"%}" />
+            <img class="button tool" id="delete"        title="删除区域"                src="{% static "slide/slide_img/delete.svg"%}" />
+            <div class="separator"></div>
+
+            <img class="button tool" id="Ki67"        title="Ki67"                 src="{% static "slide/slide_img/ki67.png"%}" />
+            <img class="button tool" id="ER"          title="ER"                   src="{% static "slide/slide_img/er.png"%}" />
+            <img class="button tool" id="PR"          title="PR"                   src="{% static "slide/slide_img/pr.png"%}" />
+
+
+            <div class="separator"></div>
+        </div>
+
+        <div id="menuBar" class="table">
+            <div class="buttonGroup">
+                <img class="button headerButton" id="save" title="保存标记" src="{% static "slide/slide_img/save.svg"%}" />
+                <img class="button headerButton" id="prev" title="前一张" src="{% static "slide/slide_img/prev.svg"%}" />
+                <img class="button headerButton" id="next" title="后一张" src="{% static "slide/slide_img/next.svg"%}" />
+                <img class="button headerButton" id="closeMenu" title="关闭面板" src="{% static "slide/slide_img/closeMenu.svg"%}" />
+            </div>
+
+            <div id="menuRegion">
+                <div class="row">
+                    <div id="myNavigator"></div>
+                </div>
+
+                <div class="row">
+                    <div class="cell">
+                        <span class="caption">文件名:</span>
+                        <span class="slide-title" id="slice-name"></span>
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="cell">
+                        <span class="caption">文件描述:</span>
+                        <textarea rows="5" wrap='soft' id="slide_conclusion"></textarea>
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="cell">
+                        <div id="audioPanel" class="inactive">
+                            <span class='caption' id='region-msg'>请选择区域</span>
+                            <div>
+                                <audio id="menuAudioPlayer" controls=true type="audio/mp3" preload="auto"></audio>
+                            </div>
+                            <span class='region-recording' id="regionStatus" style='display:none;'>录音...</span>
+                            <div class="recordingButtons">
+                                <input type='image' class='eye' src="{% static "slide/slide_img/startrecord.png"%}" onclick='slideview.startRecording(this);' />
+                                <input type='image' class='eye' style='display: none;' src="{% static "slide/slide_img/stoprecord.png"%}" onclick='slideview.stopRecording(this);' disabled='disabled'/>
+                            </div>
+                        </div>
+                        <div class="separator"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="cell">
+                        <span class="caption">区域列表</span>
+                        <div id="regionList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OpenSeadragon viewer -->
+    <div id="openseadragon1" style="height:100%; width:100%"></div>
+    <!-- alert/info box after saving -->
+    <div id="saveDialog"></div>
+    <div id="toolDialog"></div>
+
+
+    <!-- Load javascript -->
+    <script src="{% static "slide/js/jquery-3.2.1.js"%}"></script>
+    <script src="{% static "slide/js/openseadragon/openseadragon.min.js"%}"></script>
+    <script src="{% static "slide/js/openseadragonUtil/openseadragon-viewerinputhook.min.js"%}"></script>
+    <script src="{% static "slide/js/openseadragonUtil/openseadragon-imaginghelper.min.js"%}"></script>
+    <script src="{% static "slide/js/openseadragonUtil/openseadragon-scalebar.js"%}"></script>
+    <script src="{% static "slide/js/paperfull/paper-full.min.js"%}"></script>
+    <script src="{% static "slide/js/util.js"%}"></script>
+    <script src="{% static "slide/js/sliderecord.js"%}"></script>
+    <script src="{% static "slide/js/slideview.js"%}"></script>
+    <script src="{% static "slide/js/slidemain.js"%}"></script>
+
+    <script>
+        $('#menuPanel').css('display', 'none');
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bot</title>
+    <link rel="stylesheet" href="css/bot.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="warp">
+        <div class="title">
+            <img src="img/robot-1.png" style="width: 35px">
+            <span>CHATBOT</span>
+        </div>
+        <div class="top">
+          <div class='user_message'>
+            <img class='bot_icon' src='img/robot.png'>
+            <div class='bot_word'><span>Hi. How are you today? </span><em></em>
+            </div></div>
+        </div>
+        <div class="bottom">
+            <div class="tool">
+              <i class="fa fa-weixin chat_icon" title="chat"></i>
+              <i class="fa fa-microphone voice_icon" title="search"></i>
+              <!-- <img class="chat_icon" src="img/chat_icon3.png"/>
+              <img class="chat_icon"src="img/chat_icon.png"/>
+              <img class="voice_icon" src="img/mkf/11705062.png" title="voice search>" />
+              <img class="voice_icon" src="img/mkf/1170506.png" title="voice search>" /> -->
+            </div>
+            <div class="chat" >
+                    <div class="input_warp">
+                    <input class="chat_input" type="text" autofocus>
+                    <div id="chat_submit">
+                      <button class="submit" type="submit">SUBMIT</button>
+                      <img class="submit_icon" src="img/next_2.png">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="voice" style="display:none">
+                <div class="voice_warp">
+                    <audio id="menuAudioPlayer" controls=true type="audio/mp3" preload="auto"></audio>
+                </div>
+                <span class='region-recording' id="regionStatus" style='display:none;'>录音中...</span>
+                <!-- <div class="recordingButtons">
+                    <input type='image' class='eye' src= onclick='slideview.startRecording(this);' />
+                    <input type='image' class='eye' style='display: none;' src="{% static "slide/slide_img/stoprecord.png"%}" onclick='slideview.stopRecording(this);' disabled='disabled'/>
+                </div> -->
+                <div class="record_icon">
+                  <i class="fa fa-play-circle start" title="start"></i>
+                  <i class="fa fa-stop-circle stop" title="stop"></i>
+                </div>
+                <div id="search">
+                  <img class="search" src="img/planet-earth-1.png" />
+                  <span class="search_word">search</span>
+                </div>
+
+
+
+            </div>
+
+            <img class="voice_icon" src="img/mkf/1197699.png" title="voice search" onclick="stopRecording()" style="display:none">
+        </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bot.js"></script>
+</body>
+</html>
